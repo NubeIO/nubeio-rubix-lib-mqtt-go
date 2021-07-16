@@ -6,7 +6,6 @@ DRAFT="false"
 PRE="false"
 BRANCH="master"
 GITHUB_ACCESS_TOKEN=$GITHUB_ACCESS_TOKEN
-echo ${GITHUB_ACCESS_TOKEN}
 
 # get repon name and owner
 REPO_REMOTE=$(git config --get remote.origin.url)
@@ -17,7 +16,12 @@ if [ -z $REPO_REMOTE ]; then
 fi
 
 REPO_NAME=$(basename -s .git $REPO_REMOTE)
-REPO_OWNER=$(git config --get user.name)
+# REPO_OWNER=$(git config --get user.name)
+REPO_OWNER="NubeIO"
+echo ${REPO_NAME}
+echo ${REPO_OWNER}
+echo ${GITHUB_ACCESS_TOKEN}
+
 
 # get args
 while getopts v:m:b:draft:pre: option
