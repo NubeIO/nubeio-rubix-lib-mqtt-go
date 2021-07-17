@@ -1,8 +1,8 @@
-package mqttcommon
+package mqtt_lib
 
 import (
 	"fmt"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/config"
+	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/mqtt_config"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"log"
 )
@@ -11,12 +11,18 @@ type MqttConnection struct {
 	mqttClient mqtt.Client
 }
 
+
 func NewConnection() (conn *MqttConnection) {
-	c := config.MqttConfig("na", false)
+	//c := mqtt_config.MqttConfig("na", false)
+	var br mqtt_config.Broker
+	br.Host = "0.0.0.0"
+	br.Port = "1883"
+
+	c := mqtt_config.GetMqttConfig()
 	opts := mqtt.NewClientOptions()
-	host := "tcp://" + c.Broker.Host + ":" + c.Broker.Port
+	host := "tcp://" + c.Host + ":" + c.Port
 	opts.AddBroker(fmt.Sprintf(host))
-	opts.SetClientID(c.Broker.ClientId)
+	opts.SetClientID(c.ClientId)
 	opts.AutoReconnect = true
 	opts.OnConnectionLost = connectLostHandler
 	opts.OnConnect = connectHandler

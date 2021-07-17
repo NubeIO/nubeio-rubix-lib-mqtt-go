@@ -2,25 +2,30 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/config"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/pkg/mqttcommon"
+	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/mqtt_config"
+	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/pkg/mqtt_lib"
 	"log"
 )
 
-type TMicroEdge struct {
-	Sensor        string
+type Mes struct {
+	M        string `json:"my_cool_key"`
 }
 
 
 func main() {
+	var mqtt mqtt_config.Params
+	mqtt.UseConfigFile = false
 
-
-	f := "config-test.json"
-	c := config.MqttConfig(f, true)
-	log.Println(c)
+	var br mqtt_config.Broker
+	br.Host = "0.0.0.0"
+	br.Port = "1883"
+	err := mqtt_config.SetMqttConfig(br, mqtt); if err != nil {
+		log.Println(err)
+		return
+	}
 	topic := "test"
-	mqttConnection := mqttcommon.NewConnection()
-	message := TMicroEdge{Sensor: "me"}
+	mqttConnection := mqtt_lib.NewConnection()
+	message := Mes{M: "me"}
 	jsonValue, _ := json.Marshal(message)
 	log.Println("MQTT messages, topic:", topic, " ", "message:", message)
 	mqttConnection.Publish(string(jsonValue), topic)
