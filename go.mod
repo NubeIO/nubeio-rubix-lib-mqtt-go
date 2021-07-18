@@ -1,4 +1,4 @@
-module github.com/NubeIO/nubeio-rubix-app-mqtt-go
+module github.com/NubeIO/nubeio-rubix-lib-mqtt-go
 
 go 1.16
 
