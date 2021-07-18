@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/mqtt_config"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/pkg/mqtt_lib"
+	"github.com/NubeIO/nubeio-rubix-lib-mqtt-go/mqtt_config"
+	"github.com/NubeIO/nubeio-rubix-lib-mqtt-go/pkg/mqtt_lib"
 	"log"
 )
 

@@ -2,7 +2,7 @@ package mqtt_lib
 
 import (
 	"fmt"
-	"github.com/NubeIO/nubeio-rubix-app-mqtt-go/mqtt_config"
+	"github.com/NubeIO/nubeio-rubix-lib-mqtt-go/mqtt_config"
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"log"
 )
